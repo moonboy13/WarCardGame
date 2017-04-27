@@ -1,4 +1,4 @@
-﻿namespace CardGameWare
+﻿namespace CardGameWar
 {
     partial class Form1
     {

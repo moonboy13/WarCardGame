@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CardGameWare.Properties
+namespace CardGameWar.Properties
 {
 
 
