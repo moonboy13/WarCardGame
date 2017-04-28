@@ -11,6 +11,9 @@ namespace CardGameWar
     // </summary>
     class Card
     {
+        /// <summary>
+        /// The identification number for the card, 1-52
+        /// </summary>
         private int id;
 
         public int GetId()
@@ -23,6 +26,10 @@ namespace CardGameWar
             id = value;
         }
 
+        /// <summary>
+        /// Card value, runs 2-14. Jack = 11, Queen = 12, King = 13, Ace = 14
+        /// Card value may also run from 1-13, with ace coming in at the bottom.
+        /// </summary>
         private int value;
 
         public int GetValue()
@@ -35,6 +42,9 @@ namespace CardGameWar
             this.value = value;
         }
 
+        /// <summary>
+        /// Club, Heart, Spade, Diamond.
+        /// </summary>
         private string suit;
 
         public string GetSuit()
@@ -47,6 +57,10 @@ namespace CardGameWar
             suit = value;
         }
 
+        /// <summary>
+        /// String representation of the card. Either the number or the name
+        /// of the face card.
+        /// </summary>
         private string name;
 
         public string GetName()
@@ -59,6 +73,9 @@ namespace CardGameWar
             name = value;
         }
 
+        /// <summary>
+        /// Image resource for the card. Should be the local path on disk.
+        /// </summary>
         private string img;
 
         public string GetImg()
