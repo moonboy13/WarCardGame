@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CardGameWar;
 
 namespace WarTest
 {
     [TestClass]
-    public class UnitTest1
+    public class GameBoardTest
     {
         [TestMethod]
         public void TestMethod1()
