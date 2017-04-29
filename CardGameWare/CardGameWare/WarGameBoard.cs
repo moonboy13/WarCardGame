@@ -37,6 +37,11 @@ namespace CardGameWar
 
         }
 
+        public Boolean HasWinner()
+        {
+            return false;
+        }
+
         /// <summary>
         /// Flip the next set of cards from each player and determine a winner for the hand.
         /// </summary>
