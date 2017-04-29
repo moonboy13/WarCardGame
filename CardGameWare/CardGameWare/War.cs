@@ -27,6 +27,25 @@ namespace CardGameWar
             else if (sender == this.startGameToolStripMenuItem)
             {
                 // start game
+                this.WarForm_ShowNameInput();
+            }
+        }
+
+        public void WarForm_ShowNameInput()
+        {
+            this.userNameTextBox.Visible = true;
+            this.userNameInputLabel.Visible = true;
+            this.UserNameAcceptButton.Visible = true;
+        }
+
+        private void WarForm_UserNameAcceptButton_Click(object sender, EventArgs e)
+        {
+            Player user = new Player();
+            user.SetName(this.userNameTextBox.Text);
+            WarGameBoard gameBoard = new WarGameBoard(user);
+            while (!gameBoard.HasWinner())
+            {
+                gameBoard.PlayNextHand();
             }
         }
     }

@@ -23,6 +23,20 @@ namespace CardGameWar
             GamePlayers.Add(newPlayer);
         }
 
+        public WarGameBoard(Player user)
+        {
+            this.AddPlayer(user);
+            Player comp = new Player();
+            comp.SetName("Computer");
+            this.AddPlayer(comp);
+            this.InitDeck();
+        }
+
+        private void InitDeck()
+        {
+
+        }
+
         /// <summary>
         /// Flip the next set of cards from each player and determine a winner for the hand.
         /// </summary>
