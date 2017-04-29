@@ -18,7 +18,7 @@ namespace CardGameWar
         /// Get the players name
         /// </summary>
         /// <returns>The player name</returns>
-        private string GetName()
+        public string GetName()
         {
             return name;
         }
@@ -27,7 +27,7 @@ namespace CardGameWar
         /// Set the current players name
         /// </summary>
         /// <param name="value">Player Name</param>
-        private void SetName(string value)
+        public void SetName(string value)
         {
             name = value;
         }
