@@ -11,8 +11,27 @@ namespace CardGameWar
     /// </summary>
     class Player
     {
-        /// <param name="name">The name of the player</param>
+        /// <summary>
+        /// The name of the player
+        /// </summary>
         private string name;
+
+        /// <summary>
+        /// The cards in the players hand. The 0'th element represents the bottom
+        /// card in the player's deck.
+        /// </summary>
+        private List<Card> hand;
+
+        public Player()
+        {
+            this.name = "";
+            this.hand = new List<Card>();
+        }
+        public Player(string name)
+        {
+            this.name = name;
+            this.hand = new List<Card>();
+        }
 
         /// <summary>
         /// Get the players name
@@ -31,12 +50,6 @@ namespace CardGameWar
         {
             name = value;
         }
-
-        /// <summary>
-        /// The cards in the players hand. The 0'th element represents the bottom
-        /// card in the player's deck.
-        /// </summary>
-        private List<Card> hand;
 
         /// <summary>
         /// Insert a singular card at the bottom of the deck.

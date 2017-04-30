@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,12 @@ namespace CardGameWar
 
         public WarGameBoard(Player user)
         {
+            // Initialize empty class variables
+            this.GamePlayers = new List<Player>();
+            this.Deck = new List<Card>();
+            this.FaceUpCards = new Dictionary<string, List<Card>>();
+            this.FaceDownCards = new Dictionary<string, List<Card>>();
+
             this.AddPlayer(user);
             Player comp = new Player();
             comp.SetName("Computer");
@@ -34,6 +41,11 @@ namespace CardGameWar
 
         private void InitDeck()
         {
+            using (System.IO.StreamReader r = new System.IO.StreamReader("CardConfig/AceHighCardsConfig.json"))
+            {
+                string json = r.ReadToEnd();
+                this.Deck = JsonConvert.DeserializeObject<List<Card>>(json);
+            }
 
         }
 
