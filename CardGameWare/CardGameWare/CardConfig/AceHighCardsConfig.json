@@ -4,363 +4,363 @@
     "value": 2,
     "suit": "Spade",
     "Name": "Two",
-    "img": "none"
+    "img": "CardConfig/Assests/2_of_spades.png"
   },
   {
     "id": 2,
     "value": 3,
     "suit": "Spade",
     "Name": "Three",
-    "img": "none"
+    "img": "CardConfig/Assests/3_of_spades.png"
   },
   {
     "id": 3,
     "value": 4,
     "suit": "Spade",
     "Name": "Four",
-    "img": "none"
+    "img": "CardConfig/Assests/4_of_spades.png"
   },
   {
     "id": 4,
     "value": 5,
     "suit": "Spade",
     "Name": "Five",
-    "img": "none"
+    "img": "CardConfig/Assests/5_of_spades.png"
   },
   {
     "id": 5,
     "value": 6,
     "suit": "Spade",
     "Name": "Six",
-    "img": "none"
+    "img": "CardConfig/Assests/6_of_spades.png"
   },
   {
     "id": 6,
     "value": 7,
     "suit": "Spade",
     "Name": "Seven",
-    "img": "none"
+    "img": "CardConfig/Assests/7_of_spades.png"
   },
   {
     "id": 7,
     "value": 8,
     "suit": "Spade",
     "Name": "Eight",
-    "img": "none"
+    "img": "CardConfig/Assests/8_of_spades.png"
   },
   {
     "id": 8,
     "value": 9,
     "suit": "Spade",
     "Name": "Nine",
-    "img": "none"
+    "img": "CardConfig/Assests/9_of_spades.png"
   },
   {
     "id": 9,
     "value": 10,
     "suit": "Spade",
     "Name": "Ten",
-    "img": "none"
+    "img": "CardConfig/Assests/10_of_spades.png"
   },
   {
     "id": 10,
     "value": 11,
     "suit": "Spade",
     "Name": "Jack",
-    "img": "none"
+    "img": "CardConfig/Assests/jack_of_spades.png"
   },
   {
     "id": 11,
     "value": 12,
     "suit": "Spade",
     "Name": "Queen",
-    "img": "none"
+    "img": "CardConfig/Assests/queen_of_spades.png"
   },
   {
     "id": 12,
     "value": 13,
     "suit": "Spade",
     "Name": "King",
-    "img": "none"
+    "img": "CardConfig/Assests/king_of_spades.png"
   },
   {
     "id": 13,
     "value": 14,
     "suit": "Spade",
     "Name": "Ace",
-    "img": "none"
+    "img": "CardConfig/Assests/ace_of_spades.png"
   },
   {
     "id": 14,
     "value": 2,
     "suit": "Heart",
     "Name": "Two",
-    "img": "none"
+    "img": "CardConfig/Assests/2_of_hearts.png"
   },
   {
     "id": 15,
     "value": 3,
     "suit": "Heart",
     "Name": "Three",
-    "img": "none"
+    "img": "CardConfig/Assests/3_of_hearts.png"
   },
   {
     "id": 16,
     "value": 4,
     "suit": "Heart",
     "Name": "Four",
-    "img": "none"
+    "img": "CardConfig/Assests/4_of_hearts.png"
   },
   {
     "id": 17,
     "value": 5,
     "suit": "Heart",
     "Name": "Five",
-    "img": "none"
+    "img": "CardConfig/Assests/5_of_hearts.png"
   },
   {
     "id": 18,
     "value": 6,
     "suit": "Heart",
     "Name": "Six",
-    "img": "none"
+    "img": "CardConfig/Assests/6_of_hearts.png"
   },
   {
     "id": 19,
     "value": 7,
     "suit": "Heart",
     "Name": "Seven",
-    "img": "none"
+    "img": "CardConfig/Assests/7_of_hearts.png"
   },
   {
     "id": 20,
     "value": 8,
     "suit": "Heart",
     "Name": "Eight",
-    "img": "none"
+    "img": "CardConfig/Assests/8_of_hearts.png"
   },
   {
     "id": 21,
     "value": 9,
     "suit": "Heart",
     "Name": "Nine",
-    "img": "none"
+    "img": "CardConfig/Assests/9_of_hearts.png"
   },
   {
     "id": 22,
     "value": 10,
     "suit": "Heart",
     "Name": "Ten",
-    "img": "none"
+    "img": "CardConfig/Assests/10_of_hearts.png"
   },
   {
     "id": 23,
     "value": 11,
     "suit": "Heart",
     "Name": "Jack",
-    "img": "none"
+    "img": "CardConfig/Assests/jack_of_hearts.png"
   },
   {
     "id": 24,
     "value": 12,
     "suit": "Heart",
     "Name": "Queen",
-    "img": "none"
+    "img": "CardConfig/Assests/queen_of_hearts.png"
   },
   {
     "id": 25,
     "value": 13,
     "suit": "Heart",
     "Name": "King",
-    "img": "none"
+    "img": "CardConfig/Assests/king_of_hearts.png"
   },
   {
     "id": 26,
     "value": 14,
     "suit": "Heart",
     "Name": "Ace",
-    "img": "none"
+    "img": "CardConfig/Assests/ace_of_hearts.png"
   },
   {
     "id": 27,
     "value": 2,
     "suit": "Club",
     "Name": "Two",
-    "img": "none"
+    "img": "CardConfig/Assests/2_of_clubs.png"
   },
   {
     "id": 28,
     "value": 3,
     "suit": "Club",
     "Name": "Three",
-    "img": "none"
+    "img": "CardConfig/Assests/3_of_clubs.png"
   },
   {
     "id": 29,
     "value": 4,
     "suit": "Club",
     "Name": "Four",
-    "img": "none"
+    "img": "CardConfig/Assests/4_of_clubs.png"
   },
   {
     "id": 30,
     "value": 5,
     "suit": "Club",
     "Name": "Five",
-    "img": "none"
+    "img": "CardConfig/Assests/5_of_clubs.png"
   },
   {
     "id": 31,
     "value": 6,
     "suit": "Club",
     "Name": "Six",
-    "img": "none"
+    "img": "CardConfig/Assests/6_of_clubs.png"
   },
   {
     "id": 32,
     "value": 7,
     "suit": "Club",
     "Name": "Seven",
-    "img": "none"
+    "img": "CardConfig/Assests/7_of_clubs.png"
   },
   {
     "id": 33,
     "value": 8,
     "suit": "Club",
     "Name": "Eight",
-    "img": "none"
+    "img": "CardConfig/Assests/8_of_clubs.png"
   },
   {
     "id": 34,
     "value": 9,
     "suit": "Club",
     "Name": "Nine",
-    "img": "none"
+    "img": "CardConfig/Assests/9_of_clubs.png"
   },
   {
     "id": 35,
     "value": 10,
     "suit": "Club",
     "Name": "Ten",
-    "img": "none"
+    "img": "CardConfig/Assests/10_of_clubs.png"
   },
   {
     "id": 36,
     "value": 11,
     "suit": "Club",
     "Name": "Jack",
-    "img": "none"
+    "img": "CardConfig/Assests/jack_of_clubs.png"
   },
   {
     "id": 37,
     "value": 12,
     "suit": "Club",
     "Name": "Queen",
-    "img": "none"
+    "img": "CardConfig/Assests/queen_of_clubs.png"
   },
   {
     "id": 38,
     "value": 13,
     "suit": "Club",
     "Name": "King",
-    "img": "none"
+    "img": "CardConfig/Assests/king_of_clubs.png"
   },
   {
     "id": 39,
     "value": 14,
     "suit": "Club",
     "Name": "Ace",
-    "img": "none"
+    "img": "CardConfig/Assests/ace_of_clubs.png"
   },
   {
     "id": 40,
     "value": 2,
     "suit": "Diamond",
     "Name": "Two",
-    "img": "none"
+    "img": "CardConfig/Assests/2_of_diamonds.png"
   },
   {
     "id": 41,
     "value": 3,
     "suit": "Diamond",
     "Name": "Three",
-    "img": "none"
+    "img": "CardConfig/Assests/3_of_diamonds.png"
   },
   {
     "id": 42,
     "value": 4,
     "suit": "Diamond",
     "Name": "Four",
-    "img": "none"
+    "img": "CardConfig/Assests/4_of_diamonds.png"
   },
   {
     "id": 43,
     "value": 5,
     "suit": "Diamond",
     "Name": "Five",
-    "img": "none"
+    "img": "CardConfig/Assests/5_of_diamonds.png"
   },
   {
     "id": 44,
     "value": 6,
     "suit": "Diamond",
     "Name": "Six",
-    "img": "none"
+    "img": "CardConfig/Assests/6_of_diamonds.png"
   },
   {
     "id": 45,
     "value": 7,
     "suit": "Diamond",
     "Name": "Seven",
-    "img": "none"
+    "img": "CardConfig/Assests/7_of_diamonds.png"
   },
   {
     "id": 46,
     "value": 8,
     "suit": "Diamond",
     "Name": "Eight",
-    "img": "none"
+    "img": "CardConfig/Assests/8_of_diamonds.png"
   },
   {
     "id": 47,
     "value": 9,
     "suit": "Diamond",
     "Name": "Nine",
-    "img": "none"
+    "img": "CardConfig/Assests/9_of_diamonds.png"
   },
   {
     "id": 48,
     "value": 10,
     "suit": "Diamond",
     "Name": "Ten",
-    "img": "none"
+    "img": "CardConfig/Assests/10_of_diamonds.png"
   },
   {
     "id": 49,
     "value": 11,
     "suit": "Diamond",
     "Name": "Jack",
-    "img": "none"
+    "img": "CardConfig/Assests/jack_of_diamonds.png"
   },
   {
     "id": 50,
     "value": 12,
     "suit": "Diamond",
     "Name": "Queen",
-    "img": "none"
+    "img": "CardConfig/Assests/queen_of_diamonds.png"
   },
   {
     "id": 51,
     "value": 13,
     "suit": "Diamond",
     "Name": "King",
-    "img": "none"
+    "img": "CardConfig/Assests/king_of_diamonds.png"
   },
   {
-    "id": 53,
+    "id": 52,
     "value": 14,
     "suit": "Diamond",
     "Name": "Ace",
-    "img": "none"
+    "img": "CardConfig/Assests/ace_of_diamonds.png"
   }
 ]
