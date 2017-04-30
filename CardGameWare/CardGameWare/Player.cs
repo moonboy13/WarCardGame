@@ -22,6 +22,8 @@ namespace CardGameWar
         /// </summary>
         private List<Card> hand;
 
+        private System.Windows.Forms.PictureBox playerCardPictureBox;
+
         public Player()
         {
             this.name = "";
@@ -31,6 +33,17 @@ namespace CardGameWar
         {
             this.name = name;
             this.hand = new List<Card>();
+        }
+        public Player(string name, System.Windows.Forms.PictureBox CardPictureBox)
+        {
+            this.name = name;
+            this.hand = new List<Card>();
+            this.playerCardPictureBox = CardPictureBox;
+        }
+
+        public void SetPicturePath(string path)
+        {
+            this.playerCardPictureBox.ImageLocation = path;
         }
 
         /// <summary>

@@ -36,7 +36,14 @@
             this.userNameInputLabel = new System.Windows.Forms.Label();
             this.UserNameAcceptButton = new System.Windows.Forms.Button();
             this.winnerBanner = new System.Windows.Forms.Label();
+            this.PlayerTopCard = new System.Windows.Forms.PictureBox();
+            this.ComputerTopCard = new System.Windows.Forms.PictureBox();
+            this.UserName = new System.Windows.Forms.Label();
+            this.ComputerName = new System.Windows.Forms.Label();
+            this.DealHand = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerTopCard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComputerTopCard)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -116,12 +123,64 @@
             this.winnerBanner.TabIndex = 4;
             this.winnerBanner.Visible = false;
             // 
+            // PlayerTopCard
+            // 
+            this.PlayerTopCard.Location = new System.Drawing.Point(127, 179);
+            this.PlayerTopCard.Name = "PlayerTopCard";
+            this.PlayerTopCard.Size = new System.Drawing.Size(194, 297);
+            this.PlayerTopCard.TabIndex = 5;
+            this.PlayerTopCard.TabStop = false;
+            this.PlayerTopCard.Visible = false;
+            // 
+            // ComputerTopCard
+            // 
+            this.ComputerTopCard.Location = new System.Drawing.Point(849, 179);
+            this.ComputerTopCard.Name = "ComputerTopCard";
+            this.ComputerTopCard.Size = new System.Drawing.Size(194, 297);
+            this.ComputerTopCard.TabIndex = 6;
+            this.ComputerTopCard.TabStop = false;
+            this.ComputerTopCard.Visible = false;
+            // 
+            // UserName
+            // 
+            this.UserName.AutoSize = true;
+            this.UserName.Location = new System.Drawing.Point(195, 140);
+            this.UserName.Name = "UserName";
+            this.UserName.Size = new System.Drawing.Size(0, 20);
+            this.UserName.TabIndex = 7;
+            this.UserName.Visible = false;
+            // 
+            // ComputerName
+            // 
+            this.ComputerName.AutoSize = true;
+            this.ComputerName.Location = new System.Drawing.Point(916, 140);
+            this.ComputerName.Name = "ComputerName";
+            this.ComputerName.Size = new System.Drawing.Size(0, 20);
+            this.ComputerName.TabIndex = 9;
+            this.ComputerName.Visible = false;
+            // 
+            // DealHand
+            // 
+            this.DealHand.Location = new System.Drawing.Point(480, 482);
+            this.DealHand.Name = "DealHand";
+            this.DealHand.Size = new System.Drawing.Size(171, 54);
+            this.DealHand.TabIndex = 10;
+            this.DealHand.Text = "Deal";
+            this.DealHand.UseVisualStyleBackColor = true;
+            this.DealHand.Visible = false;
+            this.DealHand.Click += new System.EventHandler(this.DealHand_Click);
+            // 
             // War
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Green;
-            this.ClientSize = new System.Drawing.Size(1194, 474);
+            this.ClientSize = new System.Drawing.Size(1194, 607);
+            this.Controls.Add(this.DealHand);
+            this.Controls.Add(this.ComputerName);
+            this.Controls.Add(this.UserName);
+            this.Controls.Add(this.ComputerTopCard);
+            this.Controls.Add(this.PlayerTopCard);
             this.Controls.Add(this.winnerBanner);
             this.Controls.Add(this.UserNameAcceptButton);
             this.Controls.Add(this.userNameInputLabel);
@@ -132,6 +191,8 @@
             this.Text = "War";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlayerTopCard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComputerTopCard)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,6 +208,11 @@
         private System.Windows.Forms.Label userNameInputLabel;
         private System.Windows.Forms.Button UserNameAcceptButton;
         private System.Windows.Forms.Label winnerBanner;
+        private System.Windows.Forms.PictureBox PlayerTopCard;
+        private System.Windows.Forms.PictureBox ComputerTopCard;
+        private System.Windows.Forms.Label UserName;
+        private System.Windows.Forms.Label ComputerName;
+        private System.Windows.Forms.Button DealHand;
     }
 }
 

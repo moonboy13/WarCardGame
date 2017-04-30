@@ -12,6 +12,8 @@ namespace CardGameWar
 {
     public partial class War : Form
     {
+        private WarGameBoard gameBoard;
+
         public War()
         {
             InitializeComponent();
@@ -33,22 +35,48 @@ namespace CardGameWar
 
         public void WarForm_ShowNameInput()
         {
-            this.userNameTextBox.Visible = true;
-            this.userNameInputLabel.Visible = true;
-            this.UserNameAcceptButton.Visible = true;
+            this.Warform_ToggleNameInputs(true);
+        }
+
+        private void WarForm_HideNameInput()
+        {
+            this.Warform_ToggleNameInputs(false);
+        }
+
+        private void Warform_ToggleNameInputs(Boolean show)
+        {
+            this.userNameTextBox.Visible = show;
+            this.userNameInputLabel.Visible = show;
+            this.UserNameAcceptButton.Visible = show;
+        }
+
+        private List<Player> SetupPlayers()
+        {
+            Player user = new Player(this.userNameTextBox.Text, this.PlayerTopCard);
+            Player comp = new Player("Computer", this.ComputerTopCard);
+            List<Player> players = new List<Player>();
+            players.Add(user);
+            players.Add(comp);
+            return players;
         }
 
         private void WarForm_UserNameAcceptButton_Click(object sender, EventArgs e)
         {
-            Player user = new Player();
-            user.SetName(this.userNameTextBox.Text);
-            WarGameBoard gameBoard = new WarGameBoard(user);
+            this.WarForm_HideNameInput();
+
+            gameBoard = new WarGameBoard(this.SetupPlayers());
+
             while (!gameBoard.HasWinner())
             {
                 gameBoard.PlayNextHand();
             }
             this.winnerBanner.Text = gameBoard.GetWinnerName();
             this.winnerBanner.Visible = true;
+        }
+
+        private void WarForm_DealHand_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

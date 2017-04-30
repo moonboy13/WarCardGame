@@ -23,30 +23,28 @@ namespace CardGameWar
 
         public void AddPlayer(Player newPlayer)
         {
-            gamePlayers.Add(newPlayer);
+            this.gamePlayers.Add(newPlayer);
         }
 
-        public WarGameBoard(Player user)
+        public WarGameBoard(List<Player> players)
         {
             // Initialize empty class variables
-            this.gamePlayers = new List<Player>();
-            this.deck = new List<Card>();
-            this.faceUpCards = new Dictionary<string, List<Card>>();
-            this.faceDownCards = new Dictionary<string, List<Card>>();
+            gamePlayers = new List<Player>();
+            deck = new List<Card>();
+            faceUpCards = new Dictionary<string, List<Card>>();
+            faceDownCards = new Dictionary<string, List<Card>>();
 
-            this.AddPlayer(user);
-            Player comp = new Player();
-            comp.SetName("Computer");
-            this.AddPlayer(comp);
+            gamePlayers = players;
 
-            this.faceUpCards[user.GetName()] = new List<Card>();
-            this.faceUpCards[comp.GetName()] = new List<Card>();
-            this.faceDownCards[user.GetName()] = new List<Card>();
-            this.faceDownCards[comp.GetName()] = new List<Card>();
+            foreach (Player p in players)
+            {
+                faceUpCards[p.GetName()] = new List<Card>();
+                faceDownCards[p.GetName()] = new List<Card>();
+            }
 
-            this.InitDeck();
-            this.ShuffleDeck();
-            this.DealDeck();
+            InitDeck();
+            ShuffleDeck();
+            DealDeck();
         }
 
         private void InitDeck()
