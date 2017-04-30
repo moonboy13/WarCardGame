@@ -36,7 +36,15 @@ namespace CardGameWar
             Player comp = new Player();
             comp.SetName("Computer");
             this.AddPlayer(comp);
+
+            this.FaceUpCards[user.GetName()] = new List<Card>();
+            this.FaceUpCards[comp.GetName()] = new List<Card>();
+            this.FaceDownCards[user.GetName()] = new List<Card>();
+            this.FaceDownCards[comp.GetName()] = new List<Card>();
+
             this.InitDeck();
+            this.ShuffleDeck();
+            this.DealDeck();
         }
 
         private void InitDeck()
@@ -46,7 +54,33 @@ namespace CardGameWar
                 string json = r.ReadToEnd();
                 this.Deck = JsonConvert.DeserializeObject<List<Card>>(json);
             }
+        }
 
+        /// <summary>
+        /// Shuffle the deck of cards using Fisher-Yates suffle.
+        /// </summary>
+        private void ShuffleDeck()
+        {
+            Random rnd = new Random();
+            int n = this.Deck.Count();
+            while (n > 1)
+            {
+                n--;
+                int i = rnd.Next(n + 1);
+                Card tmp = this.Deck[i];
+                this.Deck[i] = this.Deck[n];
+                this.Deck[n] = tmp;
+            }
+        }
+
+        private void DealDeck()
+        {
+            int counter = 1;
+            foreach(Card c in this.Deck)
+            {
+                this.GamePlayers[counter % 2].AddCard(c);
+                counter++;
+            }
         }
 
         public Boolean HasWinner()
