@@ -35,6 +35,7 @@
             this.userNameTextBox = new System.Windows.Forms.TextBox();
             this.userNameInputLabel = new System.Windows.Forms.Label();
             this.UserNameAcceptButton = new System.Windows.Forms.Button();
+            this.winnerBanner = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,12 +106,23 @@
             this.UserNameAcceptButton.Visible = false;
             this.UserNameAcceptButton.Click += new System.EventHandler(this.WarForm_UserNameAcceptButton_Click);
             // 
+            // winnerBanner
+            // 
+            this.winnerBanner.AutoSize = true;
+            this.winnerBanner.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winnerBanner.Location = new System.Drawing.Point(497, 79);
+            this.winnerBanner.Name = "winnerBanner";
+            this.winnerBanner.Size = new System.Drawing.Size(0, 37);
+            this.winnerBanner.TabIndex = 4;
+            this.winnerBanner.Visible = false;
+            // 
             // War
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Green;
             this.ClientSize = new System.Drawing.Size(1194, 474);
+            this.Controls.Add(this.winnerBanner);
             this.Controls.Add(this.UserNameAcceptButton);
             this.Controls.Add(this.userNameInputLabel);
             this.Controls.Add(this.userNameTextBox);
@@ -134,6 +146,7 @@
         private System.Windows.Forms.TextBox userNameTextBox;
         private System.Windows.Forms.Label userNameInputLabel;
         private System.Windows.Forms.Button UserNameAcceptButton;
+        private System.Windows.Forms.Label winnerBanner;
     }
 }
 

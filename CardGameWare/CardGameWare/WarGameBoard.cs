@@ -14,33 +14,35 @@ namespace CardGameWar
     /// </summary>
     class WarGameBoard
     {
-        private List<Player> GamePlayers;
-        private List<Card> Deck;
-        private Dictionary<String, List<Card>> FaceUpCards;
-        private Dictionary<String, List<Card>> FaceDownCards;
+        private List<Player> gamePlayers;
+        private List<Card> deck;
+        private Dictionary<String, List<Card>> faceUpCards;
+        private Dictionary<String, List<Card>> faceDownCards;
+        private Boolean playerWon = false;
+        private Player winner;
 
         public void AddPlayer(Player newPlayer)
         {
-            GamePlayers.Add(newPlayer);
+            gamePlayers.Add(newPlayer);
         }
 
         public WarGameBoard(Player user)
         {
             // Initialize empty class variables
-            this.GamePlayers = new List<Player>();
-            this.Deck = new List<Card>();
-            this.FaceUpCards = new Dictionary<string, List<Card>>();
-            this.FaceDownCards = new Dictionary<string, List<Card>>();
+            this.gamePlayers = new List<Player>();
+            this.deck = new List<Card>();
+            this.faceUpCards = new Dictionary<string, List<Card>>();
+            this.faceDownCards = new Dictionary<string, List<Card>>();
 
             this.AddPlayer(user);
             Player comp = new Player();
             comp.SetName("Computer");
             this.AddPlayer(comp);
 
-            this.FaceUpCards[user.GetName()] = new List<Card>();
-            this.FaceUpCards[comp.GetName()] = new List<Card>();
-            this.FaceDownCards[user.GetName()] = new List<Card>();
-            this.FaceDownCards[comp.GetName()] = new List<Card>();
+            this.faceUpCards[user.GetName()] = new List<Card>();
+            this.faceUpCards[comp.GetName()] = new List<Card>();
+            this.faceDownCards[user.GetName()] = new List<Card>();
+            this.faceDownCards[comp.GetName()] = new List<Card>();
 
             this.InitDeck();
             this.ShuffleDeck();
@@ -52,7 +54,7 @@ namespace CardGameWar
             using (System.IO.StreamReader r = new System.IO.StreamReader("CardConfig/AceHighCardsConfig.json"))
             {
                 string json = r.ReadToEnd();
-                this.Deck = JsonConvert.DeserializeObject<List<Card>>(json);
+                this.deck = JsonConvert.DeserializeObject<List<Card>>(json);
             }
         }
 
@@ -62,30 +64,35 @@ namespace CardGameWar
         private void ShuffleDeck()
         {
             Random rnd = new Random();
-            int n = this.Deck.Count();
+            int n = this.deck.Count();
             while (n > 1)
             {
                 n--;
                 int i = rnd.Next(n + 1);
-                Card tmp = this.Deck[i];
-                this.Deck[i] = this.Deck[n];
-                this.Deck[n] = tmp;
+                Card tmp = this.deck[i];
+                this.deck[i] = this.deck[n];
+                this.deck[n] = tmp;
             }
         }
 
         private void DealDeck()
         {
             int counter = 1;
-            foreach(Card c in this.Deck)
+            foreach(Card c in this.deck)
             {
-                this.GamePlayers[counter % 2].AddCard(c);
+                this.gamePlayers[counter % 2].AddCard(c);
                 counter++;
             }
         }
 
         public Boolean HasWinner()
         {
-            return false;
+            return this.playerWon;
+        }
+
+        public string GetWinnerName()
+        {
+            return this.winner.GetName();
         }
 
         /// <summary>
@@ -93,12 +100,33 @@ namespace CardGameWar
         /// </summary>
         public void PlayNextHand()
         {
-            foreach (Player p in GamePlayers)
+            // Switching to iterator so that it is easier to determine who won
+            for (int i = 0; i < this.gamePlayers.Count; i++)
             {
-                FaceUpCards[p.GetName()].Add(p.GetTopCard());
+                Player p = this.gamePlayers[i];
+                try
+                {
+                    faceUpCards[p.GetName()].Add(p.GetTopCard());
+                }
+                catch (PlayerOutOfCardsException)
+                {
+                    // If this exception is thrown in this function, the player loses
+                    this.DeclareWinner(i);
+                }
             }
 
-            this.DetermineHandWinner();
+            if (!this.playerWon)
+            {
+                this.DetermineHandWinner();
+            }
+        }
+
+        private void DeclareWinner(int loser)
+        {
+            // Only works for 2 player games, but this will pull the winning player.
+            Player winner = this.gamePlayers[((loser + 1) % 2)];
+            this.winner = winner;
+            this.playerWon = true;
         }
 
         /// <summary>
@@ -107,12 +135,12 @@ namespace CardGameWar
         private void DetermineHandWinner()
         {
             // So, there are lots of function calls here. Keep an eye on the performance of these lines.
-            Card PlayerACard = FaceUpCards[GamePlayers[0].GetName()].ElementAt(FaceUpCards[GamePlayers[0].GetName()].Count - 1);
-            Card PlayerBCard = FaceUpCards[GamePlayers[1].GetName()].ElementAt(FaceUpCards[GamePlayers[1].GetName()].Count - 1);
+            Card PlayerACard = faceUpCards[gamePlayers[0].GetName()].ElementAt(faceUpCards[gamePlayers[0].GetName()].Count - 1);
+            Card PlayerBCard = faceUpCards[gamePlayers[1].GetName()].ElementAt(faceUpCards[gamePlayers[1].GetName()].Count - 1);
             if (PlayerACard.GetValue() > PlayerBCard.GetValue())
             {
                 // Player A wins, give them all the cards
-                this.GivePlayerAllCards(GamePlayers[0]);
+                this.GivePlayerAllCards(gamePlayers[0]);
             }
             else if (PlayerACard.GetValue() == PlayerBCard.GetValue())
             {
@@ -121,7 +149,7 @@ namespace CardGameWar
             else
             {
                 // Player B wins, give them all the cards
-                this.GivePlayerAllCards(GamePlayers[1]);
+                this.GivePlayerAllCards(gamePlayers[1]);
             }
         }
 
@@ -130,10 +158,28 @@ namespace CardGameWar
         /// </summary>
         private void HandleWar()
         {
-            foreach (Player p in GamePlayers)
+            foreach (Player p in gamePlayers)
             {
-                FaceDownCards[p.GetName()].Add(p.GetTopCard());
-                FaceUpCards[p.GetName()].Add(p.GetTopCard());
+                try
+                {
+                    faceDownCards[p.GetName()].Add(p.GetTopCard());
+                }
+                catch (PlayerOutOfCardsException)
+                {
+                    // They don't have anymore cards, just move on
+                    continue;
+                }
+
+                try
+                {
+                    faceUpCards[p.GetName()].Add(p.GetTopCard());
+                }
+                catch (PlayerOutOfCardsException)
+                {
+                    // Take the top card out of the face down card pile for this player an flip it.
+                    faceUpCards[p.GetName()].Add(faceDownCards[p.GetName()].Last());
+                    faceDownCards[p.GetName()].RemoveAt(faceDownCards[p.GetName()].Count - 1);
+                }
             }
 
             this.DetermineHandWinner();
@@ -145,12 +191,12 @@ namespace CardGameWar
         /// <param name="winner">The winning player</param>
         private void GivePlayerAllCards(Player winner)
         {
-            foreach (Player p in GamePlayers)
+            foreach (Player p in gamePlayers)
             {
-                winner.AddMultipleCards(FaceUpCards[p.GetName()]);
-                FaceUpCards[p.GetName()].Clear();
-                winner.AddMultipleCards(FaceDownCards[p.GetName()]);
-                FaceDownCards[p.GetName()].Clear();
+                winner.AddMultipleCards(faceUpCards[p.GetName()]);
+                faceUpCards[p.GetName()].Clear();
+                winner.AddMultipleCards(faceDownCards[p.GetName()]);
+                faceDownCards[p.GetName()].Clear();
             }
         }
     }

@@ -75,9 +75,16 @@ namespace CardGameWar
         /// <returns>Top card for the player.</returns>
         public Card GetTopCard()
         {
-            Card returnCard = hand.ElementAt(hand.Count - 1);
-            hand.RemoveAt(hand.Count - 1);
-            return returnCard;
+            if (hand.Count == 0)
+            {
+                throw new PlayerOutOfCardsException(this.name + " has no more cards.");
+            }
+            else
+            {
+                Card returnCard = hand.ElementAt(hand.Count - 1);
+                hand.RemoveAt(hand.Count - 1);
+                return returnCard;
+            }
         }
     }
 }

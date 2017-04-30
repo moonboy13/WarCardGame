@@ -47,6 +47,8 @@ namespace CardGameWar
             {
                 gameBoard.PlayNextHand();
             }
+            this.winnerBanner.Text = gameBoard.GetWinnerName();
+            this.winnerBanner.Visible = true;
         }
     }
 }
