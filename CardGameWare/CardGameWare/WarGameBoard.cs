@@ -148,7 +148,9 @@ namespace CardGameWar
             foreach (Player p in GamePlayers)
             {
                 winner.AddMultipleCards(FaceUpCards[p.GetName()]);
+                FaceUpCards[p.GetName()].Clear();
                 winner.AddMultipleCards(FaceDownCards[p.GetName()]);
+                FaceDownCards[p.GetName()].Clear();
             }
         }
     }
