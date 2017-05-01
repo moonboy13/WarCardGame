@@ -130,8 +130,8 @@
             this.PlayerTopCard.BackColor = System.Drawing.Color.Ivory;
             this.PlayerTopCard.Location = new System.Drawing.Point(129, 191);
             this.PlayerTopCard.Name = "PlayerTopCard";
-            this.PlayerTopCard.Size = new System.Drawing.Size(194, 297);
-            this.PlayerTopCard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.PlayerTopCard.Size = new System.Drawing.Size(222, 323);
+            this.PlayerTopCard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PlayerTopCard.TabIndex = 5;
             this.PlayerTopCard.TabStop = false;
             this.PlayerTopCard.Visible = false;
@@ -141,8 +141,8 @@
             this.ComputerTopCard.BackColor = System.Drawing.Color.Ivory;
             this.ComputerTopCard.Location = new System.Drawing.Point(920, 191);
             this.ComputerTopCard.Name = "ComputerTopCard";
-            this.ComputerTopCard.Size = new System.Drawing.Size(194, 297);
-            this.ComputerTopCard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.ComputerTopCard.Size = new System.Drawing.Size(222, 323);
+            this.ComputerTopCard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ComputerTopCard.TabIndex = 6;
             this.ComputerTopCard.TabStop = false;
             this.ComputerTopCard.Visible = false;
@@ -179,15 +179,16 @@
             // playerCardCount
             // 
             this.playerCardCount.AutoSize = true;
-            this.playerCardCount.Location = new System.Drawing.Point(199, 507);
+            this.playerCardCount.Location = new System.Drawing.Point(195, 527);
             this.playerCardCount.Name = "playerCardCount";
             this.playerCardCount.Size = new System.Drawing.Size(0, 20);
             this.playerCardCount.TabIndex = 11;
+            this.playerCardCount.Visible = false;
             // 
             // computerCardCount
             // 
             this.computerCardCount.AutoSize = true;
-            this.computerCardCount.Location = new System.Drawing.Point(1011, 507);
+            this.computerCardCount.Location = new System.Drawing.Point(1002, 527);
             this.computerCardCount.Name = "computerCardCount";
             this.computerCardCount.Size = new System.Drawing.Size(0, 20);
             this.computerCardCount.TabIndex = 12;

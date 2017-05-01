@@ -80,6 +80,8 @@ namespace CardGameWar
             UserName.Visible = true;
             ComputerName.Visible = true;
             DealHand.Visible = true;
+            playerCardCount.Visible = true;
+            computerCardCount.Visible = true;
         }
 
         private void WarForm_DealHand_Click(object sender, EventArgs e)
@@ -96,8 +98,9 @@ namespace CardGameWar
             }
             else
             {
-                this.winnerBanner.Text = gameBoard.GetWinnerName();
-                this.winnerBanner.Visible = true;
+                winnerBanner.Text = gameBoard.GetWinnerName();
+                winnerBanner.Visible = true;
+                DealHand.Visible = false;
             }
         }
     }
