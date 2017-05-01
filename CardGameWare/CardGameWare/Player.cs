@@ -22,6 +22,8 @@ namespace CardGameWar
         /// </summary>
         private List<Card> hand;
 
+        private System.Windows.Forms.Label playerCardCountBox;
+
         private System.Windows.Forms.PictureBox playerCardPictureBox;
 
         public Player()
@@ -34,11 +36,12 @@ namespace CardGameWar
             this.name = name;
             this.hand = new List<Card>();
         }
-        public Player(string name, System.Windows.Forms.PictureBox CardPictureBox)
+        public Player(string name, System.Windows.Forms.PictureBox CardPictureBox, System.Windows.Forms.Label cardCount)
         {
             this.name = name;
             this.hand = new List<Card>();
             this.playerCardPictureBox = CardPictureBox;
+            playerCardCountBox = cardCount;
         }
 
         public void SetPicturePath(string path)
@@ -80,6 +83,11 @@ namespace CardGameWar
         public void AddMultipleCards(List<Card> newCards)
         {
             hand.InsertRange(0, newCards);
+        }
+
+        public void UpdateCardCount()
+        {
+            playerCardCountBox.Text = hand.Count.ToString();
         }
 
         /// <summary>

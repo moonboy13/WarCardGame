@@ -93,10 +93,7 @@ namespace CardGameWar
             return this.winner.GetName();
         }
 
-        /// <summary>
-        /// Flip the next set of cards from each player and determine a winner for the hand.
-        /// </summary>
-        public void PlayNextHand()
+        public void DealHand()
         {
             // Switching to iterator so that it is easier to determine who won
             for (int i = 0; i < this.gamePlayers.Count; i++)
@@ -104,18 +101,15 @@ namespace CardGameWar
                 Player p = this.gamePlayers[i];
                 try
                 {
-                    faceUpCards[p.GetName()].Add(p.GetTopCard());
+                    Card c = p.GetTopCard();
+                    faceUpCards[p.GetName()].Add(c);
+                    p.SetPicturePath(c.GetImg());
                 }
                 catch (PlayerOutOfCardsException)
                 {
                     // If this exception is thrown in this function, the player loses
-                    this.DeclareWinner(i);
+                    DeclareWinner(i);
                 }
-            }
-
-            if (!this.playerWon)
-            {
-                this.DetermineHandWinner();
             }
         }
 
@@ -130,31 +124,38 @@ namespace CardGameWar
         /// <summary>
         /// Check the top face-up card for each player. Determine who wins or declare a war!s
         /// </summary>
-        private void DetermineHandWinner()
+        /// <returns>True if a war is determined</returns>
+        public Boolean DetermineHandWinner()
         {
+            Boolean isWar = false;
             // So, there are lots of function calls here. Keep an eye on the performance of these lines.
             Card PlayerACard = faceUpCards[gamePlayers[0].GetName()].ElementAt(faceUpCards[gamePlayers[0].GetName()].Count - 1);
             Card PlayerBCard = faceUpCards[gamePlayers[1].GetName()].ElementAt(faceUpCards[gamePlayers[1].GetName()].Count - 1);
             if (PlayerACard.GetValue() > PlayerBCard.GetValue())
             {
                 // Player A wins, give them all the cards
-                this.GivePlayerAllCards(gamePlayers[0]);
+                GivePlayerAllCards(gamePlayers[0]);
             }
             else if (PlayerACard.GetValue() == PlayerBCard.GetValue())
             {
-                this.HandleWar();
+                //this.HandleWar();
+                isWar = true;
             }
             else
             {
                 // Player B wins, give them all the cards
-                this.GivePlayerAllCards(gamePlayers[1]);
+                GivePlayerAllCards(gamePlayers[1]);
             }
+
+            foreach(Player p in gamePlayers)
+            {
+                p.UpdateCardCount();
+            }
+
+            return isWar;
         }
 
-        /// <summary>
-        /// Deal out the cards for war and then move onto checking for a winner.
-        /// </summary>
-        private void HandleWar()
+        public void DealWar()
         {
             foreach (Player p in gamePlayers)
             {
@@ -170,17 +171,19 @@ namespace CardGameWar
 
                 try
                 {
-                    faceUpCards[p.GetName()].Add(p.GetTopCard());
+                    Card c = p.GetTopCard();
+                    faceUpCards[p.GetName()].Add(c);
+                    p.SetPicturePath(c.GetImg());
                 }
                 catch (PlayerOutOfCardsException)
                 {
                     // Take the top card out of the face down card pile for this player an flip it.
-                    faceUpCards[p.GetName()].Add(faceDownCards[p.GetName()].Last());
+                    Card c = faceDownCards[p.GetName()].Last();
+                    faceUpCards[p.GetName()].Add(c);
                     faceDownCards[p.GetName()].RemoveAt(faceDownCards[p.GetName()].Count - 1);
+                    p.SetPicturePath(c.GetImg());
                 }
             }
-
-            this.DetermineHandWinner();
         }
 
         /// <summary>

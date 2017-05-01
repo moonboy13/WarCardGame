@@ -52,11 +52,15 @@ namespace CardGameWar
 
         private List<Player> SetupPlayers()
         {
-            Player user = new Player(this.userNameTextBox.Text, this.PlayerTopCard);
-            Player comp = new Player("Computer", this.ComputerTopCard);
-            List<Player> players = new List<Player>();
-            players.Add(user);
-            players.Add(comp);
+            Player user = new Player(userNameTextBox.Text, PlayerTopCard, playerCardCount);
+            UserName.Text = userNameTextBox.Text;
+            Player comp = new Player("Computer", ComputerTopCard, computerCardCount);
+            ComputerName.Text = "Computer";
+            List<Player> players = new List<Player>
+            {
+                user,
+                comp
+            };
             return players;
         }
 
@@ -66,17 +70,35 @@ namespace CardGameWar
 
             gameBoard = new WarGameBoard(this.SetupPlayers());
 
-            while (!gameBoard.HasWinner())
-            {
-                gameBoard.PlayNextHand();
-            }
-            this.winnerBanner.Text = gameBoard.GetWinnerName();
-            this.winnerBanner.Visible = true;
+            this.WarForm_ShowGameInputs();
+        }
+
+        private void WarForm_ShowGameInputs()
+        {
+            PlayerTopCard.Visible = true;
+            ComputerTopCard.Visible = true;
+            UserName.Visible = true;
+            ComputerName.Visible = true;
+            DealHand.Visible = true;
         }
 
         private void WarForm_DealHand_Click(object sender, EventArgs e)
         {
-            
+            gameBoard.DealHand();
+
+            if (!gameBoard.HasWinner())
+            {
+                // Returns true if a war is determined
+                while (gameBoard.DetermineHandWinner())
+                {
+                    gameBoard.DealWar();
+                }
+            }
+            else
+            {
+                this.winnerBanner.Text = gameBoard.GetWinnerName();
+                this.winnerBanner.Visible = true;
+            }
         }
     }
 }
