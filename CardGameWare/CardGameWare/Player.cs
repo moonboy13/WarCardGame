@@ -22,8 +22,14 @@ namespace CardGameWar
         /// </summary>
         private List<Card> hand;
 
+        /// <summary>
+        /// UI element for the players card count so that it can be updated.
+        /// </summary>
         private System.Windows.Forms.Label playerCardCountBox;
 
+        /// <summary>
+        /// UI element to display the user's current face-up card.
+        /// </summary>
         private System.Windows.Forms.PictureBox playerCardPictureBox;
 
         public Player()
@@ -44,6 +50,10 @@ namespace CardGameWar
             playerCardCountBox = cardCount;
         }
 
+        /// <summary>
+        /// Update the path for the user's card.
+        /// </summary>
+        /// <param name="path">Relative path to image asset.</param>
         public void SetPicturePath(string path)
         {
             this.playerCardPictureBox.ImageLocation = path;
@@ -85,6 +95,9 @@ namespace CardGameWar
             hand.InsertRange(0, newCards);
         }
 
+        /// <summary>
+        /// Update the count of the players cards in their hand
+        /// </summary>
         public void UpdateCardCount()
         {
             playerCardCountBox.Text = hand.Count.ToString();

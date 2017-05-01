@@ -14,18 +14,40 @@ namespace CardGameWar
     /// </summary>
     class WarGameBoard
     {
+        /// <summary>
+        /// Players involved in the game.
+        /// </summary>
         private List<Player> gamePlayers;
+        
+        /// <summary>
+        /// Deck of cards to play the game with.
+        /// </summary>
         private List<Card> deck;
+        
+        /// <summary>
+        /// Cards showing face up.
+        /// </summary>
         private Dictionary<String, List<Card>> faceUpCards;
+        
+        /// <summary>
+        /// Cards showing face down, these lists only occur during a war.
+        /// </summary>
         private Dictionary<String, List<Card>> faceDownCards;
+
+        /// <summary>
+        /// Indication that a player has won. Tells outside processors the game is up.
+        /// </summary>
         private Boolean playerWon = false;
+
+        /// <summary>
+        /// Wining player.
+        /// </summary>
         private Player winner;
 
-        public void AddPlayer(Player newPlayer)
-        {
-            this.gamePlayers.Add(newPlayer);
-        }
-
+        /// <summary>
+        /// Class constructor to initialize the game.
+        /// </summary>
+        /// <param name="players">Players involved</param>
         public WarGameBoard(List<Player> players)
         {
             // Initialize empty class variables
@@ -47,6 +69,9 @@ namespace CardGameWar
             DealDeck();
         }
 
+        /// <summary>
+        /// Read in the deck from the configuration file.
+        /// </summary>
         private void InitDeck()
         {
             using (System.IO.StreamReader r = new System.IO.StreamReader("CardConfig/AceHighCardsConfig.json"))
@@ -73,6 +98,10 @@ namespace CardGameWar
             }
         }
 
+        /// <summary>
+        /// Split the deck between the two players. Emulate actual dealing instead of
+        /// just spliting the list in half.
+        /// </summary>
         private void DealDeck()
         {
             int counter = 1;
@@ -83,16 +112,27 @@ namespace CardGameWar
             }
         }
 
+        /// <summary>
+        /// Return if a player has won.
+        /// </summary>
+        /// <returns>Indicator if a player has won.</returns>
         public Boolean HasWinner()
         {
             return this.playerWon;
         }
 
+        /// <summary>
+        /// Return the name of the winning player.
+        /// </summary>
+        /// <returns>String name of the winning player.</returns>
         public string GetWinnerName()
         {
             return this.winner.GetName();
         }
 
+        /// <summary>
+        /// Pop the top card off of each players hand and deal it into the face up cards.
+        /// </summary>
         public void DealHand()
         {
             // Switching to iterator so that it is easier to determine who won
@@ -103,7 +143,7 @@ namespace CardGameWar
                 {
                     Card c = p.GetTopCard();
                     faceUpCards[p.GetName()].Add(c);
-                    p.SetPicturePath(c.GetImg());
+                    p.SetPicturePath(c.Img);
                 }
                 catch (PlayerOutOfCardsException)
                 {
@@ -113,6 +153,10 @@ namespace CardGameWar
             }
         }
 
+        /// <summary>
+        /// A player has won the card game. Set the appropriate indicators
+        /// </summary>
+        /// <param name="loser">Integer index in the players list of the losing player</param>
         private void DeclareWinner(int loser)
         {
             // Only works for 2 player games, but this will pull the winning player.
@@ -122,7 +166,7 @@ namespace CardGameWar
         }
 
         /// <summary>
-        /// Check the top face-up card for each player. Determine who wins or declare a war!s
+        /// Check the top face-up card for each player. Determine who wins or declare a war!
         /// </summary>
         /// <returns>True if a war is determined</returns>
         public Boolean DetermineHandWinner()
@@ -131,12 +175,12 @@ namespace CardGameWar
             // So, there are lots of function calls here. Keep an eye on the performance of these lines.
             Card PlayerACard = faceUpCards[gamePlayers[0].GetName()].ElementAt(faceUpCards[gamePlayers[0].GetName()].Count - 1);
             Card PlayerBCard = faceUpCards[gamePlayers[1].GetName()].ElementAt(faceUpCards[gamePlayers[1].GetName()].Count - 1);
-            if (PlayerACard.GetValue() > PlayerBCard.GetValue())
+            if (PlayerACard.Value > PlayerBCard.Value)
             {
                 // Player A wins, give them all the cards
                 GivePlayerAllCards(gamePlayers[0]);
             }
-            else if (PlayerACard.GetValue() == PlayerBCard.GetValue())
+            else if (PlayerACard.Value == PlayerBCard.Value)
             {
                 //this.HandleWar();
                 isWar = true;
@@ -155,10 +199,18 @@ namespace CardGameWar
             return isWar;
         }
 
+        /// <summary>
+        /// In the case of a war, deal a face down card and another face up card.
+        /// It is possible for a player to not have enough cards. In that case either
+        /// their face down card becomes their face up card or the face up card does not change.
+        /// </summary>
         public void DealWar()
         {
             foreach (Player p in gamePlayers)
-            {
+            { 
+                // TODO: Count the number of times this first error is thrown. If
+                // it is equal to the number of game players, then nobody has any
+                // additional cards and we've got a tie.
                 try
                 {
                     faceDownCards[p.GetName()].Add(p.GetTopCard());
@@ -173,7 +225,7 @@ namespace CardGameWar
                 {
                     Card c = p.GetTopCard();
                     faceUpCards[p.GetName()].Add(c);
-                    p.SetPicturePath(c.GetImg());
+                    p.SetPicturePath(c.Img);
                 }
                 catch (PlayerOutOfCardsException)
                 {
@@ -181,7 +233,7 @@ namespace CardGameWar
                     Card c = faceDownCards[p.GetName()].Last();
                     faceUpCards[p.GetName()].Add(c);
                     faceDownCards[p.GetName()].RemoveAt(faceDownCards[p.GetName()].Count - 1);
-                    p.SetPicturePath(c.GetImg());
+                    p.SetPicturePath(c.Img);
                 }
             }
         }
