@@ -184,6 +184,7 @@
             this.playerCardCount.Size = new System.Drawing.Size(0, 20);
             this.playerCardCount.TabIndex = 11;
             this.playerCardCount.Visible = false;
+            this.playerCardCount.Text = "26";
             // 
             // computerCardCount
             // 
@@ -193,6 +194,7 @@
             this.computerCardCount.Size = new System.Drawing.Size(0, 20);
             this.computerCardCount.TabIndex = 12;
             this.computerCardCount.Visible = false;
+            this.computerCardCount.Text = "26";
             // 
             // War
             // 

@@ -87,6 +87,7 @@ namespace CardGameWar
         private void WarForm_DealHand_Click(object sender, EventArgs e)
         {
             gameBoard.DealHand();
+            Application.DoEvents();
 
             if (!gameBoard.HasWinner())
             {
@@ -94,6 +95,7 @@ namespace CardGameWar
                 while (gameBoard.DetermineHandWinner())
                 {
                     gameBoard.DealWar();
+                    Application.DoEvents();
                 }
             }
             else
