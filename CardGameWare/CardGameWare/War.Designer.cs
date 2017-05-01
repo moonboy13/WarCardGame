@@ -31,7 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.userNameTextBox = new System.Windows.Forms.TextBox();
             this.userNameInputLabel = new System.Windows.Forms.Label();
             this.UserNameAcceptButton = new System.Windows.Forms.Button();
@@ -53,8 +52,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startGameToolStripMenuItem,
-            this.exitToolStripMenuItem,
-            this.toolStripMenuItem1});
+            this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1276, 33);
@@ -75,12 +73,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(51, 29);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.WarForm_OnMenuItemClick);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(34, 29);
-            this.toolStripMenuItem1.Text = "  ";
             // 
             // userNameTextBox
             // 
@@ -181,20 +173,20 @@
             this.playerCardCount.AutoSize = true;
             this.playerCardCount.Location = new System.Drawing.Point(195, 527);
             this.playerCardCount.Name = "playerCardCount";
-            this.playerCardCount.Size = new System.Drawing.Size(0, 20);
+            this.playerCardCount.Size = new System.Drawing.Size(27, 20);
             this.playerCardCount.TabIndex = 11;
-            this.playerCardCount.Visible = false;
             this.playerCardCount.Text = "26";
+            this.playerCardCount.Visible = false;
             // 
             // computerCardCount
             // 
             this.computerCardCount.AutoSize = true;
             this.computerCardCount.Location = new System.Drawing.Point(1002, 527);
             this.computerCardCount.Name = "computerCardCount";
-            this.computerCardCount.Size = new System.Drawing.Size(0, 20);
+            this.computerCardCount.Size = new System.Drawing.Size(27, 20);
             this.computerCardCount.TabIndex = 12;
-            this.computerCardCount.Visible = false;
             this.computerCardCount.Text = "26";
+            this.computerCardCount.Visible = false;
             // 
             // War
             // 
@@ -231,7 +223,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem startGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.TextBox userNameTextBox;
         private System.Windows.Forms.Label userNameInputLabel;
         private System.Windows.Forms.Button UserNameAcceptButton;
