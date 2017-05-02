@@ -119,6 +119,7 @@ namespace CardGameWar
         /// </summary>
         private void WarForm_HideGameInputs()
         {
+            winnerBanner.Visible = false;
             WarForm_ToggleGameInputs(false);
         }
 
