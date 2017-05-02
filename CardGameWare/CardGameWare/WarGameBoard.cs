@@ -45,6 +45,12 @@ namespace CardGameWar
         private Player winner;
 
         /// <summary>
+        /// Show the number of cards currently in play. This makes it more obvious when
+        /// a war is occuring.
+        /// </summary>
+        private int inPlayCount;
+
+        /// <summary>
         /// Class constructor to initialize the game.
         /// </summary>
         /// <param name="players">Players involved</param>
@@ -55,6 +61,7 @@ namespace CardGameWar
             deck = new List<Card>();
             faceUpCards = new Dictionary<string, List<Card>>();
             faceDownCards = new Dictionary<string, List<Card>>();
+            inPlayCount = 0;
 
             gamePlayers = players;
 
@@ -77,7 +84,7 @@ namespace CardGameWar
             using (System.IO.StreamReader r = new System.IO.StreamReader("CardConfig/AceHighCardsConfig.json"))
             {
                 string json = r.ReadToEnd();
-                this.deck = JsonConvert.DeserializeObject<List<Card>>(json);
+                deck = JsonConvert.DeserializeObject<List<Card>>(json);
             }
         }
 
@@ -87,14 +94,14 @@ namespace CardGameWar
         private void ShuffleDeck()
         {
             Random rnd = new Random();
-            int n = this.deck.Count();
+            int n = deck.Count();
             while (n > 1)
             {
                 n--;
                 int i = rnd.Next(n + 1);
-                Card tmp = this.deck[i];
-                this.deck[i] = this.deck[n];
-                this.deck[n] = tmp;
+                Card tmp = deck[i];
+                deck[i] = deck[n];
+                deck[n] = tmp;
             }
         }
 
@@ -105,9 +112,9 @@ namespace CardGameWar
         private void DealDeck()
         {
             int counter = 1;
-            foreach(Card c in this.deck)
+            foreach(Card c in deck)
             {
-                this.gamePlayers[counter % 2].AddCard(c);
+                gamePlayers[counter % 2].AddCard(c);
                 counter++;
             }
         }
@@ -118,7 +125,7 @@ namespace CardGameWar
         /// <returns>Indicator if a player has won.</returns>
         public Boolean HasWinner()
         {
-            return this.playerWon;
+            return playerWon;
         }
 
         /// <summary>
@@ -127,7 +134,7 @@ namespace CardGameWar
         /// <returns>String name of the winning player.</returns>
         public string GetWinnerName()
         {
-            return this.winner.GetName();
+            return winner.GetName();
         }
 
         /// <summary>
@@ -136,14 +143,15 @@ namespace CardGameWar
         public void DealHand()
         {
             // Switching to iterator so that it is easier to determine who won
-            for (int i = 0; i < this.gamePlayers.Count; i++)
+            for (int i = 0; i < gamePlayers.Count; i++)
             {
-                Player p = this.gamePlayers[i];
+                Player p = gamePlayers[i];
                 try
                 {
                     Card c = p.GetTopCard();
                     faceUpCards[p.GetName()].Add(c);
                     p.SetPicturePath(c.Img);
+                    inPlayCount++;
                 }
                 catch (PlayerOutOfCardsException)
                 {
@@ -160,9 +168,9 @@ namespace CardGameWar
         private void DeclareWinner(int loser)
         {
             // Only works for 2 player games, but this will pull the winning player.
-            Player winner = this.gamePlayers[((loser + 1) % 2)];
+            Player winner = gamePlayers[((loser + 1) % 2)];
             this.winner = winner;
-            this.playerWon = true;
+            playerWon = true;
         }
 
         /// <summary>
@@ -191,12 +199,19 @@ namespace CardGameWar
                 GivePlayerAllCards(gamePlayers[1]);
             }
 
-            foreach(Player p in gamePlayers)
+            return isWar;
+        }
+
+        /// <summary>
+        /// Update each of the players card counts. Moved out to a separate function so
+        /// that the UI could trigger this recount at the appropriate time.
+        /// </summary>
+        public void UpdateCardCount()
+        {
+            foreach (Player p in gamePlayers)
             {
                 p.UpdateCardCount();
             }
-
-            return isWar;
         }
 
         /// <summary>
@@ -214,6 +229,7 @@ namespace CardGameWar
                 try
                 {
                     faceDownCards[p.GetName()].Add(p.GetTopCard());
+                    inPlayCount++;
                 }
                 catch (PlayerOutOfCardsException)
                 {
@@ -226,6 +242,7 @@ namespace CardGameWar
                     Card c = p.GetTopCard();
                     faceUpCards[p.GetName()].Add(c);
                     p.SetPicturePath(c.Img);
+                    inPlayCount++;
                 }
                 catch (PlayerOutOfCardsException)
                 {
@@ -244,6 +261,7 @@ namespace CardGameWar
         /// <param name="winner">The winning player</param>
         private void GivePlayerAllCards(Player winner)
         {
+            inPlayCount = 0;
             foreach (Player p in gamePlayers)
             {
                 winner.AddMultipleCards(faceUpCards[p.GetName()]);
@@ -251,6 +269,15 @@ namespace CardGameWar
                 winner.AddMultipleCards(faceDownCards[p.GetName()]);
                 faceDownCards[p.GetName()].Clear();
             }
+        }
+
+        /// <summary>
+        /// Simple getter for the number of cards currently in play on the board.
+        /// </summary>
+        /// <returns>Current in play count</returns>
+        public int GetCardsInPlayCount()
+        {
+            return inPlayCount;
         }
     }
 }

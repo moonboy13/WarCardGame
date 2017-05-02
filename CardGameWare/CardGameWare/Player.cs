@@ -34,19 +34,19 @@ namespace CardGameWar
 
         public Player()
         {
-            this.name = "";
-            this.hand = new List<Card>();
+            name = "";
+            hand = new List<Card>();
         }
         public Player(string name)
         {
             this.name = name;
-            this.hand = new List<Card>();
+            hand = new List<Card>();
         }
         public Player(string name, System.Windows.Forms.PictureBox CardPictureBox, System.Windows.Forms.Label cardCount)
         {
             this.name = name;
-            this.hand = new List<Card>();
-            this.playerCardPictureBox = CardPictureBox;
+            hand = new List<Card>();
+            playerCardPictureBox = CardPictureBox;
             playerCardCountBox = cardCount;
         }
 
@@ -56,7 +56,7 @@ namespace CardGameWar
         /// <param name="path">Relative path to image asset.</param>
         public void SetPicturePath(string path)
         {
-            this.playerCardPictureBox.ImageLocation = path;
+            playerCardPictureBox.ImageLocation = path;
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace CardGameWar
         {
             if (hand.Count == 0)
             {
-                throw new PlayerOutOfCardsException(this.name + " has no more cards.");
+                throw new PlayerOutOfCardsException(name + " has no more cards.");
             }
             else
             {

@@ -40,7 +40,7 @@ namespace CardGameWar
         /// </summary>
         public void WarForm_ShowNameInput()
         {
-            this.Warform_ToggleNameInputs(true);
+            Warform_ToggleNameInputs(true);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace CardGameWar
         /// </summary>
         private void WarForm_HideNameInput()
         {
-            this.Warform_ToggleNameInputs(false);
+            Warform_ToggleNameInputs(false);
         }
 
         /// <summary>
@@ -57,9 +57,13 @@ namespace CardGameWar
         /// <param name="show"></param>
         private void Warform_ToggleNameInputs(Boolean show)
         {
-            this.userNameTextBox.Visible = show;
-            this.userNameInputLabel.Visible = show;
-            this.UserNameAcceptButton.Visible = show;
+            userNameTextBox.Visible = show;
+            userNameInputLabel.Visible = show;
+            UserNameAcceptButton.Visible = show;
+            if (show)
+            {
+                userNameTextBox.Focus();
+            }
         }
 
         /// <summary>
@@ -89,11 +93,11 @@ namespace CardGameWar
         /// <param name="e"></param>
         private void WarForm_UserNameAcceptButton_Click(object sender, EventArgs e)
         {
-            this.WarForm_HideNameInput();
+            WarForm_HideNameInput();
 
-            gameBoard = new WarGameBoard(this.SetupPlayers());
+            gameBoard = new WarGameBoard(SetupPlayers());
 
-            this.WarForm_ShowGameInputs();
+            WarForm_ShowGameInputs();
         }
 
         /// <summary>
@@ -109,6 +113,7 @@ namespace CardGameWar
             DealHand.Visible = true;
             playerCardCount.Visible = true;
             computerCardCount.Visible = true;
+            cardsInPlayLabel.Visible = true;
         }
 
         /// <summary>
@@ -120,7 +125,9 @@ namespace CardGameWar
         /// <param name="e"></param>
         private void WarForm_DealHand_Click(object sender, EventArgs e)
         {
+            gameBoard.UpdateCardCount();
             gameBoard.DealHand();
+            cardsInPlayLabel.Text = "Cards in Play: " + gameBoard.GetCardsInPlayCount().ToString();
 
             if (!gameBoard.HasWinner())
             {
@@ -128,6 +135,7 @@ namespace CardGameWar
                 while (gameBoard.DetermineHandWinner())
                 {
                     gameBoard.DealWar();
+                    cardsInPlayLabel.Text = "Cards in Play: " + gameBoard.GetCardsInPlayCount().ToString();
                 }
             }
             else

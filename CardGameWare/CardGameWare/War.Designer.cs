@@ -42,6 +42,7 @@
             this.DealHand = new System.Windows.Forms.Button();
             this.playerCardCount = new System.Windows.Forms.Label();
             this.computerCardCount = new System.Windows.Forms.Label();
+            this.cardsInPlayLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlayerTopCard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ComputerTopCard)).BeginInit();
@@ -171,9 +172,10 @@
             // playerCardCount
             // 
             this.playerCardCount.AutoSize = true;
+            this.playerCardCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playerCardCount.Location = new System.Drawing.Point(195, 527);
             this.playerCardCount.Name = "playerCardCount";
-            this.playerCardCount.Size = new System.Drawing.Size(27, 20);
+            this.playerCardCount.Size = new System.Drawing.Size(39, 29);
             this.playerCardCount.TabIndex = 11;
             this.playerCardCount.Text = "26";
             this.playerCardCount.Visible = false;
@@ -181,12 +183,24 @@
             // computerCardCount
             // 
             this.computerCardCount.AutoSize = true;
+            this.computerCardCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.computerCardCount.Location = new System.Drawing.Point(1002, 527);
             this.computerCardCount.Name = "computerCardCount";
-            this.computerCardCount.Size = new System.Drawing.Size(27, 20);
+            this.computerCardCount.Size = new System.Drawing.Size(39, 29);
             this.computerCardCount.TabIndex = 12;
             this.computerCardCount.Text = "26";
             this.computerCardCount.Visible = false;
+            // 
+            // cardsInPlayLabel
+            // 
+            this.cardsInPlayLabel.AutoSize = true;
+            this.cardsInPlayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cardsInPlayLabel.Location = new System.Drawing.Point(499, 360);
+            this.cardsInPlayLabel.Name = "cardsInPlayLabel";
+            this.cardsInPlayLabel.Size = new System.Drawing.Size(174, 29);
+            this.cardsInPlayLabel.TabIndex = 15;
+            this.cardsInPlayLabel.Text = "Cards in Play:";
+            this.cardsInPlayLabel.Visible = false;
             // 
             // War
             // 
@@ -194,6 +208,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Green;
             this.ClientSize = new System.Drawing.Size(1276, 701);
+            this.Controls.Add(this.cardsInPlayLabel);
             this.Controls.Add(this.computerCardCount);
             this.Controls.Add(this.playerCardCount);
             this.Controls.Add(this.DealHand);
@@ -234,6 +249,7 @@
         private System.Windows.Forms.Button DealHand;
         private System.Windows.Forms.Label playerCardCount;
         private System.Windows.Forms.Label computerCardCount;
+        private System.Windows.Forms.Label cardsInPlayLabel;
     }
 }
 
