@@ -14,6 +14,7 @@ namespace CardGameWar
         public War()
         {
             InitializeComponent();
+            gameBoard = new WarGameBoard();
         }
 
         /// <summary>
@@ -26,12 +27,14 @@ namespace CardGameWar
             if(sender == this.exitToolStripMenuItem)
             {
                 // Exit the game
-                this.Close();
+                Close();
             }
             else if (sender == this.startGameToolStripMenuItem)
             {
+                gameBoard.Reset();
                 // start game
-                this.WarForm_ShowNameInput();
+                WarForm_HideGameInputs();
+                WarForm_ShowNameInput();
             }
         }
 
@@ -95,25 +98,42 @@ namespace CardGameWar
         {
             WarForm_HideNameInput();
 
-            gameBoard = new WarGameBoard(SetupPlayers());
+            gameBoard.InitGame(SetupPlayers());
 
             WarForm_ShowGameInputs();
         }
 
         /// <summary>
-        /// Make all of the game inputs visible. If in the future there is a need to also
-        /// hide them, this will turn into a toggle function.
+        /// Show the game inputs through the toggle functin.
         /// </summary>
         private void WarForm_ShowGameInputs()
         {
-            PlayerTopCard.Visible = true;
-            ComputerTopCard.Visible = true;
-            UserName.Visible = true;
-            ComputerName.Visible = true;
-            DealHand.Visible = true;
-            playerCardCount.Visible = true;
-            computerCardCount.Visible = true;
-            cardsInPlayLabel.Visible = true;
+            WarForm_ToggleGameInputs(true);
+        }
+
+        /// <summary>
+        /// Hide the game inputs through the toggle function.
+        /// </summary>
+        private void WarForm_HideGameInputs()
+        {
+            WarForm_ToggleGameInputs(false);
+        }
+
+        /// <summary>
+        /// Handle either hiding or showing the inputs for the game. Useful when the player wants
+        /// to reset and play a new game.
+        /// </summary>
+        /// <param name="show">Boolean toggle to hide or show</param>
+        private void WarForm_ToggleGameInputs(Boolean show)
+        {
+            PlayerTopCard.Visible = show;
+            ComputerTopCard.Visible = show;
+            UserName.Visible = show;
+            ComputerName.Visible = show;
+            DealHand.Visible = show;
+            playerCardCount.Visible = show;
+            computerCardCount.Visible = show;
+            cardsInPlayLabel.Visible = show;
         }
 
         /// <summary>
@@ -140,7 +160,7 @@ namespace CardGameWar
             }
             else
             {
-                winnerBanner.Text = gameBoard.GetWinnerName();
+                winnerBanner.Text = gameBoard.GetWinnerName() + " is the winner!";
                 winnerBanner.Visible = true;
                 DealHand.Visible = false;
             }

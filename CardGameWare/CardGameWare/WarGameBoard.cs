@@ -37,7 +37,7 @@ namespace CardGameWar
         /// <summary>
         /// Indication that a player has won. Tells outside processors the game is up.
         /// </summary>
-        private Boolean playerWon = false;
+        private Boolean playerWon;
 
         /// <summary>
         /// Wining player.
@@ -53,16 +53,34 @@ namespace CardGameWar
         /// <summary>
         /// Class constructor to initialize the game.
         /// </summary>
-        /// <param name="players">Players involved</param>
-        public WarGameBoard(List<Player> players)
+        public WarGameBoard()
+        {
+            deck = new List<Card>();
+            InitDeck();
+        }
+
+        /// <summary>
+        /// Initialize/Re-initialize all of the inputs.
+        /// </summary>
+        public void Reset()
         {
             // Initialize empty class variables
             gamePlayers = new List<Player>();
-            deck = new List<Card>();
             faceUpCards = new Dictionary<string, List<Card>>();
             faceDownCards = new Dictionary<string, List<Card>>();
             inPlayCount = 0;
+            winner = null;
+            playerWon = false;
+        }
 
+        /// <summary>
+        /// Initialize the game. Reshuffle the cards from their original state. If this
+        /// is the first play through, then the organized deck is shuffled. Otherwise,
+        /// the deck is reshuffled from its previous incarnation.
+        /// </summary>
+        /// <param name="players">Set of players who are ready to go for this game.</param>
+        public void InitGame(List<Player> players)
+        {
             gamePlayers = players;
 
             foreach (Player p in players)
@@ -71,9 +89,9 @@ namespace CardGameWar
                 faceDownCards[p.GetName()] = new List<Card>();
             }
 
-            InitDeck();
             ShuffleDeck();
             DealDeck();
+            UpdateCardCount();
         }
 
         /// <summary>
