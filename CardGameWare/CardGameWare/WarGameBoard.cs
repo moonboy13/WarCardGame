@@ -51,6 +51,11 @@ namespace CardGameWar
         private int inPlayCount;
 
         /// <summary>
+        /// Image to show for a blank card at the start of the game.
+        /// </summary>
+        private string blankCard = "CardConfig/Assets/back.png";
+
+        /// <summary>
         /// Class constructor to initialize the game.
         /// </summary>
         public WarGameBoard()
@@ -87,6 +92,7 @@ namespace CardGameWar
             {
                 faceUpCards[p.GetName()] = new List<Card>();
                 faceDownCards[p.GetName()] = new List<Card>();
+                p.SetPicturePath(blankCard);
             }
 
             ShuffleDeck();

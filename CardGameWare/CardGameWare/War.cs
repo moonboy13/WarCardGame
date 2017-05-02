@@ -100,6 +100,9 @@ namespace CardGameWar
 
             gameBoard.InitGame(SetupPlayers());
 
+            // Reset to a default value.
+            cardsInPlayLabel.Text = "Cards in Play:";
+
             WarForm_ShowGameInputs();
         }
 
